@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--Load the AJAX API-->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-auth.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-analytics.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      
+    </script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/d927cee5b8.js" crossorigin="anonymous"></script>
+
+    <meta charset="utf-8">
+    <title>Queue Portal - Homepage</title>
+  </head>
+  <body>
+    <div class="head-div">
+      <div class="col-of-logos">
+        <img id="organization-logo" src="" class="org-logo" alt="">
+        <div class="q-logo-container">
+          <div class="powered-by-container">
+            <h3 class="pow-text">Powered</h3>
+            <h3 class="pow-text">by</h3>
+          </div>
+          <img class="q-logo" src="images/newLogo.png" alt="">
+        </div>
+      </div>
+      <div class="right-section">
+        <h5 id="name-tag" class="welcome-text"></h5>
+        <i class="user-icon fas fa-user"></i>
+        <a class="logout" onclick="logout()">Sign out</a>
+      </div>
+    </div>
+    <div class="services-container">
+      <h3 class="select-service-text">Select Serivce Queue:</h3>
+      <select id="services-dropdown" class="services-dropdown">
+        <option value="1">--Select Service--</option>
+      </select>
+    </div>
+    <div id="center-console" class="center-console">
+      <div id="live-queue-container" class="live-queue">
+        <h1 class="up-next">Up Next</h1>
+        <div id="queue-ticket-heading-div" class="queue-ticket-heading">
+          <h3 id="ticket-number-title" class="ticket-info-title-text">Number</h3>
+          <h3 class="ticket-info-title-text">Arrival</h3>
+          <!--<h3 class="ticket-info-title-text">Elapsed</h3>-->
+        </div>
+      </div>
+      <div id="queue-info-container" class="queue-info">
+        <div class="current-tag-container">
+          <span class="now-serving">Now Serving</span>
+        </div>
+        <h1 id="zatoona" class="current-text">...</h1>
+        <h3 id="service" class="service-text"></h3>
+        <div class="queue-details">
+          <div class="one-detail">
+            <i class="fa-icon fas fa-map-marker-alt"></i>
+            <h5 class="queue-details-text">Mall of Emirates</h5>
+          </div>
+          <div class="one-detail">
+            <i class="fa-icon far fa-calendar-alt"></i>
+            <h5 id="date" class="queue-details-text">April 14th 2020</h5>
+          </div>
+          <div class="one-detail">
+            <i class="fa-icon far fa-clock"></i>
+            <h5 id="time" class="queue-details-text">Arrival: 13:01</h5>
+          </div>
+          <div id="elapsed-section" class="one-detail">
+            <i class="fa-icon far fa-hourglass"></i>
+            <h5 class="queue-details-text">Elapsed: </h5>
+            <h5 id="elapsed-hours" class="queue-details-text">00</h5>
+            <h5 class="queue-details-text">:</h5>
+            <h5 id="elapsed-minutes" class="queue-details-text">00</h5>
+            <h5 class="queue-details-text">:</h5>
+            <h5 id="elapsed-seconds" class="queue-details-text">00</h5>
+          </div>
+        </div>
+        <a onclick="callNext()" class="next-button">Call Next</a>
+      </div>
+    </div>
+    <div class="queue-analytics">
+      <h1 class="analytics-section-title">Analytics & Insights</h1>
+      <div class="chart-row-1">
+        <div class="num-stat-container">
+          <h3 class="num-stat-title-text">Tickets processed today</h3>
+          <h1 id="processed-green-text" class="num-stat">...</h1>
+        </div>
+        <div class="num-stat-container">
+          <h3 class="num-stat-title-text">People in queue waiting for service</h3>
+          <h1 id="pending-orange-text" class="num-stat">...</h1>
+        </div>
+        <div class="num-stat-container">
+          <h3 class="num-stat-title-text">Tickets processed in longer than 15 minutes</h3>
+          <h1 id="late-red-text" class="num-stat">...</h1>
+        </div>
+      </div>
+      <div class="chart-row-1">
+        <div class="chart-container-container">
+          <div class="chart-container" id="chart_div1"></div>
+        </div>
+        <div class="chart-container-container">
+          <div class="chart-container" id="chart_div2"></div>
+        </div>
+        <!--<div class="chart-container-container">
+          <div class="chart-container" id="chart_div3"></div>
+        </div>-->
+      </div>
+
+    </div>
+    <script src="javascript/app.js"></script>
+  </body>
+
+</html>

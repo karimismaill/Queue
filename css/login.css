@@ -1,0 +1,169 @@
+
+body{
+  //background: #3f61dd !important;
+  background: linear-gradient(0.25turn, #3594DD, #4563DB, #5036D5);
+  padding-top: 80px;
+}
+
+.big-text{
+  color: white;
+  //font-family: 'Roboto', sans-serif;
+  font-size: 30px;
+  font-weight: 100;
+}
+
+.q-logo{
+  height: 100px;
+  margin-bottom: 50px;
+}
+
+.login-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.virtual-ticket-img{
+  height: 200px;
+  margin-bottom: 50px;
+}
+
+.login-body{
+  //background: #3f61dd;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  border-radius: 5px;
+  margin: auto;
+}
+
+.login-details{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.email-pass-title{
+  //font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+}
+
+.email-pass-textbox{
+  border: 1px solid #00000030;
+  margin-bottom: 20px;
+  height: 45px;
+  width: 300px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.login-btn{
+  background-color: #4462db;
+  border: 1px solid #4462db;
+  color: white !important;
+  padding: 10px 128px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 200;
+}
+
+.login-btn:hover{
+  background-color: white;
+  border: 1px solid #4462db;
+  color: #4462db !important;
+}
+
+
+.right-div{
+  padding-top: 100px;
+  padding-bottom: 50px;
+  background: white;
+  width: 400px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+}
+
+.left-div{
+  background: #333;
+  width: 600px;
+  height: 500px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.loader-container{
+  min-width: 80px;
+  min-height: 80px;
+}
+
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 50px;
+}
+
+.lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #333;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
